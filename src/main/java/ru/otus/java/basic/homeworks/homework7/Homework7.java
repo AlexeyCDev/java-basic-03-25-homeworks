@@ -16,11 +16,11 @@ public class Homework7 {
         };
         zeroDiagonal(matrix);
 
-        int[]arr1={1,2,3,5,8};
-        int max=max(arr1);
-        System.out.println("Максимальный элемент массива: " + max);
+        int[][] arr1 = {{1, 2}, {3, 4}};
+        System.out.println(findMax(arr1));
 
-        int[][] matrix1 = {{1,2,3},{4,5,6}};
+
+        int[][] matrix1 = {{1, 2, 3}, {4, 5, 6}};
         System.out.println(sumOfSecondRow(matrix1));
         int[][] matrix2 = {{2}};
         System.out.println(sumOfSecondRow(matrix2));
@@ -56,48 +56,52 @@ public class Homework7 {
     }
 
     public static void zeroDiagonal(int[][] matrix) {
-        if (matrix==null){
-            System.out.println("Массив : null");
+        if (matrix == null) {
             return;
         }
         for (int i = 0; i < matrix.length; i++) {
-            if (matrix[i]==null || i>=matrix[i].length){
+            if (matrix[i] == null || i >= matrix[i].length) {
                 continue;
             }
-            matrix[i][i]=0;
+            matrix[i][i] = 0;
         }
-        System.out.println("Результат: ");
-        for(int[]row : matrix){
-            if (row==null){
-                System.out.println("null");
+        for (int[] row : matrix) {
+            if (row == null) {
                 continue;
             }
-            for (int num : row){
+            for (int num : row) {
                 System.out.print(num + " ");
             }
             System.out.println();
         }
     }
-    public static int max(int[]arr){
-        int max = arr[0];
-        for (int elem : arr){
-            if (elem>max){
-                max=elem;
+
+    public static int findMax(int[][] array) {
+        if (array == null || array.length == 0) {
+            return Integer.MIN_VALUE;
+        }
+        int max = Integer.MIN_VALUE;
+        for (int[] row : array) {
+            if (row == null) {
+                continue;
+            }
+            for (int num : row) {
+                if (num > max) {
+                    max = num;
+                }
             }
         }
         return max;
     }
-    public static int sumOfSecondRow(int[] [] array){
-        if (array==null || array.length<2){
+
+    public static int sumOfSecondRow(int[][] array) {
+        if (array == null || array.length < 2 || array[1] == null) {
             return -1;
         }
-        int[]secondRow = array[1];
-        if (secondRow==null){
-            return -1;
-        }
-        int sum=0;
-        for (int num:secondRow){
-            sum+=num;
+
+        int sum = 0;
+        for (int num : array[1]) {
+            sum += num;
         }
         return sum;
     }
